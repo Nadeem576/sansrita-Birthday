@@ -14,7 +14,7 @@
         }
 
         h1 {
-            margin-top: 90px;
+            margin-top: 120px;
             color: #fff;
             text-shadow: 2px 2px #000;
             font-size: 3em;
@@ -65,7 +65,7 @@
 
         #message {
             position: absolute;
-            top: 20%;
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
