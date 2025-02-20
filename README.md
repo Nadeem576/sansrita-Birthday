@@ -65,7 +65,7 @@
 
         #message {
             position: absolute;
-            top: 30%;
+            bottom: 12%;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
