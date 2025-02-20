@@ -54,6 +54,8 @@
             background: radial-gradient(circle, #ffcc00, #ff6600);
             border-radius: 50%;
             animation: flicker 0.5s infinite;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
         }
 
         @keyframes flicker {
@@ -90,7 +92,7 @@
                 const analyser = audioContext.createAnalyser();
                 const source = audioContext.createMediaStreamSource(stream);
                 source.connect(analyser);
-                analyser.fftSize = 1024;
+                analyser.fftSize = 512;
 
                 const bufferLength = analyser.frequencyBinCount;
                 const dataArray = new Uint8Array(bufferLength);
@@ -98,8 +100,9 @@
                 function analyzeSound() {
                     analyser.getByteFrequencyData(dataArray);
                     const volume = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
-                    console.log("Volume:", volume);
-                    if (volume > 80) { // Adjusted sensitivity for normal blow
+                    console.log("Analyzing sound... Volume:", volume);
+
+                    if (volume > 50) {
                         blowOutCandles();
                     }
                     requestAnimationFrame(analyzeSound);
@@ -136,13 +139,15 @@
 
         function blowOutCandles() {
             const flames = document.querySelectorAll('.flame');
-            flames.forEach(flame => flame.style.display = 'none');
+            flames.forEach(flame => {
+                flame.style.opacity = '0';
+            });
             checkCandles();
         }
 
         function checkCandles() {
             const flames = document.querySelectorAll('.flame');
-            const allOut = [...flames].every(f => f.style.display === 'none');
+            const allOut = [...flames].every(f => f.style.opacity === '0');
             if (allOut) {
                 document.getElementById('message').style.display = 'block';
                 setTimeout(() => {
