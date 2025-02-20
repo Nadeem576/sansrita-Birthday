@@ -14,7 +14,7 @@
         }
 
         h1 {
-            margin-top: 50px;
+            margin-top: 90px;
             color: #fff;
             text-shadow: 2px 2px #000;
             font-size: 3em;
