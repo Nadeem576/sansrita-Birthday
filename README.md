@@ -37,7 +37,7 @@
 
         .candle {
             position: absolute;
-            bottom: 20px;
+            bottom: 5%;
             width: 20px;
             height: 60px;
             background-color: #fff;
@@ -63,7 +63,7 @@
 
         #message {
             position: absolute;
-            top: 40%;
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
@@ -79,7 +79,7 @@
     <h1>🎂 Happy Birthday Sansrita! 🎉</h1>
     <div id="message">🎊 Wishing you a day as magical as you are! May your dreams float higher than these balloons and your happiness shine brighter than these candles! 🎊</div>
     
-    <audio id="song" src="https://www.bensound.com/bensound-music/bensound-birthday.mp3" preload="auto"></audio>
+    <audio id="song" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
     
     <script>
         async function requestMicrophone() {
@@ -90,7 +90,7 @@
                 const analyser = audioContext.createAnalyser();
                 const source = audioContext.createMediaStreamSource(stream);
                 source.connect(analyser);
-                analyser.fftSize = 256;
+                analyser.fftSize = 512;
 
                 const bufferLength = analyser.frequencyBinCount;
                 const dataArray = new Uint8Array(bufferLength);
@@ -99,7 +99,7 @@
                     analyser.getByteFrequencyData(dataArray);
                     const volume = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
                     console.log("Volume:", volume);
-                    if (volume > 60) { // Lowered sensitivity
+                    if (volume > 80) { // Adjusted sensitivity
                         blowOutCandles();
                     }
                     requestAnimationFrame(analyzeSound);
