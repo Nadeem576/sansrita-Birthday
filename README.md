@@ -37,7 +37,7 @@
 
         .candle {
             position: absolute;
-            bottom: 5%;
+            bottom: 10%;
             width: 20px;
             height: 60px;
             background-color: #fff;
@@ -63,7 +63,7 @@
 
         #message {
             position: absolute;
-            top: 30%;
+            top: 25%;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
@@ -90,7 +90,7 @@
                 const analyser = audioContext.createAnalyser();
                 const source = audioContext.createMediaStreamSource(stream);
                 source.connect(analyser);
-                analyser.fftSize = 512;
+                analyser.fftSize = 1024;
 
                 const bufferLength = analyser.frequencyBinCount;
                 const dataArray = new Uint8Array(bufferLength);
@@ -99,7 +99,7 @@
                     analyser.getByteFrequencyData(dataArray);
                     const volume = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
                     console.log("Volume:", volume);
-                    if (volume > 80) { // Adjusted sensitivity
+                    if (volume > 60) { // Adjusted sensitivity for normal blow
                         blowOutCandles();
                     }
                     requestAnimationFrame(analyzeSound);
