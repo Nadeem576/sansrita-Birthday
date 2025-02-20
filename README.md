@@ -37,7 +37,7 @@
 
         .candle {
             position: absolute;
-            bottom: 30px;
+            bottom: 80px;
             width: 20px;
             height: 60px;
             background-color: #fff;
@@ -63,12 +63,13 @@
 
         #message {
             position: absolute;
-            top: 45%;
+            top: 30%;
             width: 100%;
             font-size: 2em;
             color: #fff;
             text-shadow: 2px 2px #000;
             display: none;
+            z-index: 10;
         }
     </style>
 </head>
@@ -142,7 +143,9 @@
             const allOut = [...flames].every(f => f.style.display === 'none');
             if (allOut) {
                 document.getElementById('message').style.display = 'block';
-                document.getElementById('song').play();
+                setTimeout(() => {
+                    document.getElementById('song').play();
+                }, 500);
             }
         }
 
