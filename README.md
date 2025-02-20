@@ -87,7 +87,7 @@
                 const analyser = audioContext.createAnalyser();
                 const source = audioContext.createMediaStreamSource(stream);
                 source.connect(analyser);
-                analyser.fftSize = 128;
+                analyser.fftSize = 64;
 
                 const bufferLength = analyser.frequencyBinCount;
                 const dataArray = new Uint8Array(bufferLength);
@@ -95,7 +95,8 @@
                 function analyzeSound() {
                     analyser.getByteFrequencyData(dataArray);
                     const volume = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
-                    if (volume > 50) { // Improved sensitivity
+                    console.log("Volume:", volume);
+                    if (volume > 30) { // Increased sensitivity
                         blowOutCandles();
                     }
                     requestAnimationFrame(analyzeSound);
